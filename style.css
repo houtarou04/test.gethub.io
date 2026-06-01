@@ -1,0 +1,144 @@
+/* ==================== */
+/* 1. المتغيرات الأساسية حقتك */
+/* ==================== */
+:root {
+  --body-bg: #F9FAFB;      /* خلفية الصفحة */
+  --header-bg: white;      /* الهيدر رمادي فاتح */
+  --card: #F3F4F6;         /* الكارد أبيض */
+  
+  --text-c: #111827;
+  --text-secondary: #4B5563;
+  --accent: #1D4ED8;
+  --border-c: #E5E7EB;
+}
+
+/* ==================== */
+/* 2. الريست العام حقك */
+/* ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--body-bg);
+  color: var(--text-c);
+}
+
+/* ==================== */
+/* 3. الهيدر واللوغو حقك */
+/* ==================== */
+.logo {
+  height: 50px;
+  width: auto;
+  margin: 0;
+}
+
+header {
+  padding: 10px 0;
+  top: 0;
+  position: sticky;
+  width: 100%;
+  height: 70px;
+  border-bottom: 0.1px solid #F9FAFB;
+  border-radius: 0 0 10px 10px;
+  direction: ltr;
+  background-color: var(--header-bg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== */
+/* 4. حاوية الكروت Grid حقتك */
+/* ==================== */
+.container {
+  padding: 4%;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr; /* موبايل: عمود واحد */
+  grid-auto-rows: 1fr; /* كل الصفوف تاخد نفس الارتفاع */
+}
+
+/* تابلت من 768px: عمودين */
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ديسكتوب من 1024px: 3 أعمدة */
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==================== */
+/* 5. الكارد الأساسي حقك + تعديلاتي */
+/* ==================== */
+.card {
+  /* خصائصك الأصلية */
+  margin: 0;
+  background: var(--card);
+  border-radius: 12px;
+  min-height: 200px;
+  border: 1px solid var(--border-c);
+  
+  /* إضافاتي عشان الصورة تظبط */
+  padding: 0; /* لغيت البادينج عشان الصورة تاخد العرض كامل */
+  overflow: hidden; /* عشان الصورة تاخد البوردر راديوس */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* ==================== */
+/* 6. عناصر الكارد الداخلية - إضافاتي */
+/* ==================== */
+.card_img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: var(--body-bg); /* لون مؤقت لحد ما الصورة تحمل */
+}
+
+.card_body {
+  padding: 20px; /* البادينج رجع للنص بس */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-c);
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+.card_category {
+  font-size: 12px;
+  color: var(--accent); /* لون النص أزرق */
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: inline-block; /* عشان المستطيل ياخد حجم النص بس */
+  
+  /* دي إضافات الbadge */
+  padding: 4px 12px;
+  background: rgba(29, 78, 216, 0.1); /* خلفية زرقاء شفافة 10% */
+  border-radius: 999px; /* حواف دائرية كاملة */
+  width: fit-content; /* العرض حسب المحتوى */
+}
+
+.card_text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  margin-top: auto; /* يزق النص تحت لو الكارد طويل */
+}
