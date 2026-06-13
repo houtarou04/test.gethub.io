@@ -1,27 +1,20 @@
-// 1. الإعداد والاتصال (ضع رابطك ومفتاحك هنا)
+// 1. الاتصال بقاعدة البيانات
 const supabaseUrl = 'https://vmrffieodjochyorkgve.supabase.co/rest/v1/cards';
 const supabaseKey = 'sb_publishable_HZNkREzI_2VytqnpA0GvXg_2fGkqjny';
-
-// تأكد أن supabaseClient هي الطريقة الصحيحة للاتصال
+// تصحيح: المكتبة تظهر كـ supabase.createClient مباشرة
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 async function loadCards() {
-    console.log("جاري جلب البيانات..."); // للتأكد في الـ Console أن الكود يعمل
-
-    // جلب البيانات من جدول 'cards'
     const { data: cards, error } = await supabase.from('cards').select('*');
 
     if (error) {
-        console.error("خطأ في جلب البيانات:", error);
+        console.error("خطأ من Supabase:", error);
         return;
     }
 
-    console.log("البيانات التي تم جلبها:", cards); // لرؤية البيانات في الـ Console
-
     const container = document.querySelector('.container');
-    container.innerHTML = ''; // تفريغ الـ section
+    container.innerHTML = ''; 
 
-    // عرض البطاقات
     cards.forEach(card => {
         container.innerHTML += `
             <div class="card">
@@ -41,5 +34,4 @@ async function loadCards() {
     });
 }
 
-// تشغيل الدالة
 loadCards();
